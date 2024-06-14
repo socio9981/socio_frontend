@@ -1,0 +1,25 @@
+.mainSection {
+    width: 95%;
+    height: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    transition: width 0.3s ease;
+}
+
+.mainSection.mimimized {
+    width: 85%;
+    transition: width 0.3s ease;
+}
+
+/* Mobile styles */
+@media screen and (max-width: 767px){
+    .mainSection{
+        width: 100%;
+    }
+}
+
+/* Tablet styles */
+@media screen and (min-width: 768px) and (max-width: 1024px){
+    width: 100%;
+}
