@@ -10,15 +10,16 @@
 /**
  * Defining global variables for the main colors
  */
-:root{
+:root {
     --socio-black: rgb(0, 0, 0);
     --socio-white: rgb(245, 245, 245);
+    --socio-blue: rgb(0, 149, 256);
 }
 
 /**
  * Applying the dark theme when the id of the root div is `darkBG`
  */
-#darkBG{
+#darkBG {
     background-color: var(--socio-black);
     transition: background-color 0.53s ease, color 0.3s ease;
 }
@@ -26,14 +27,34 @@
 /**
  * Applying the dark theme to all child elements of the root div when its id is `darkBG`
  */
-#darkBG *{
+#darkBG p,#darkBG div, #darkBG svg, #darkBG h3, #darkBG h2, #darkBG h1, #darkBG span, #darkBG input, #darkBG button, #darkBG textarea{
     color: var(--socio-white);
+}
+
+#darkBG input, #lightBG input, #darkBG textarea, #lightBG textarea{
+    background-color: transparent;
+}
+
+#darkBG input,#darkBG textarea{
+    border: solid 1px var(--socio-white);
+}
+
+#lightBG input,#lightBG textarea{
+    border: solid 1px var(--socio-black);
+}
+
+#darkBG input::placeholder,#darkBG textarea::placeholder{
+    color: var(--socio-white);
+}
+
+#lightBG input::placeholder,#lightBG textarea::placeholder{
+    color: var(--socio-black);
 }
 
 /**
  * Applying the light theme when the id of the root div is `lightBG`
  */
-#lightBG{
+#lightBG {
     background-color: var(--socio-white);
     transition: background-color 0.3s ease, color 0.3s ease;
 }
@@ -41,30 +62,85 @@
 /**
  * Applying the light theme to all child elements of the root div when its id is `lightBG`
  */
-#lightBG *{
+#lightBG p,#lightBG div, #lightBG svg, #lightBG h3, #lightBG h2, #lightBG h1, #lightBG span, #lightBG input, #lightBG button, #lightBG textarea{
     color: var(--socio-black);
 }
 
 /**
  * Styling the main div of the `App` component
  */
-.App{
+.App {
     box-sizing: border-box;
     height: 100%;
     width: 100%;
     display: flex;
 }
 
+#miscellaneous {
+    height: 100%;
+    position: absolute;
+    left: 5%;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: width 0.3s ease-in-out;
+}
+
+.miscellaneous-open {
+    border: solid 0.1px lightgrey;
+    width: 25%;
+    z-index: 1;
+}
+
+.miscellaneous-close {
+    z-index: -1;
+    border: none;
+    width: 0;
+}
+
 /**
  * Mobile styles
  */
-@media screen and (max-width: 767px){
-    /* Add your mobile styles here */
+@media screen and (max-width: 767px) {
+    .App {
+        flex-direction: column;
+    }
+
+    #miscellaneous {
+        border-radius: 0;
+        left: 0;
+        height: 86%;
+        bottom: 6%;
+        overflow: hidden;
+        transition: transform 0.3s ease; /* Add transition for transform property */
+    }
+
+    .miscellaneous-open {
+        width: 100%;
+        z-index: 1;
+        transform: translateY(0); /* Set position to top */
+    }
+
+    .miscellaneous-close {
+        z-index: 1;
+        transform: translateY(100%); /* Set position to bottom */
+    }
+
 }
 
 /**
  * Tablet styles
  */
-@media screen and (min-width: 768px) and (max-width: 1024px){
-    /* Add your tablet styles here */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    #miscellaneous {
+        border-radius: 0;
+        left: 10% !important;
+    }
+
+    .miscellaneous-open {
+        width: 90%;
+    }
+
+    .miscellaneous-close {
+        z-index: 1;
+    }
 }

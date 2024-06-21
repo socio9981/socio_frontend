@@ -62,8 +62,12 @@ export const GlobalStoreProvider = ({children}) => {
     const updateDeviceType = () => {
         const width = window.innerWidth;
 
-        if (width <= 1024) {
+        if (width <= 767) {
             setDeviceType('mobile');
+        }
+        else if(width <= 1024) {
+                setDeviceType('tablet');
+                setSideBarMinimized(true);
         } else {
             setDeviceType('desktop');
         }
@@ -71,7 +75,8 @@ export const GlobalStoreProvider = ({children}) => {
 
     // Return the provider element for the global store.
     return (
-        <GlobalStore.Provider value={{darkMode, toggleDarkMode, sideBarMinimized, toggleSideBar, deviceType, updateDeviceType}}>
+        <GlobalStore.Provider
+            value={{darkMode, toggleDarkMode, sideBarMinimized, toggleSideBar, deviceType, updateDeviceType}}>
             {
                 children
             }
